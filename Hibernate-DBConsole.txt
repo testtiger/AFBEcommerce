@@ -1,0 +1,41 @@
+Hibernate: drop table address if exists
+Hibernate: drop table shopper_profile if exists
+Hibernate: drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+
+Hibernate: create table address (
+address_type varchar(255),
+first_name varchar(255),
+last_name varchar(255),
+address_line1 varchar(255),
+address_line2 varchar(255), 
+city varchar(255),
+country varchar(255),
+is_default_address boolean not null,
+state varchar(255),
+zip varchar(255),
+address_id bigint not null,
+profile_id bigint,
+primary key (address_id))
+
+Hibernate: create table shopper_profile (profile_id bigint not null, email varchar(255), first_name varchar(255), last_name varchar(255), password varchar(255), phone varchar(255), primary key (profile_id))
+
+Hibernate: alter table address add constraint FKejvbmostpks0ksgbnecvw20j7 foreign key (profile_id) references shopper_profile
+
+
+firstName:"",
+lastName:"",
+addressType:""
+
+firstName:
+lastName:
+addressLine1:
+addressLine2:
+city:
+state:
+zip:
+country:
+addressType:
+isDefaultAddress:
+addressId:
+profileId:
