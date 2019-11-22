@@ -1,0 +1,12 @@
+Question: Defaulted Address Updation
+-------------------------------
+Assume if Profile contains 100 addresses: one among them is Deafult address (have isDefault:true), If I update any of the other address
+as default; how do I send payload . I mean I don't want send all 100 addresses to update 2 rows ?
+
+My-Answer : Send the Address which is to be non-defaulted, send the other-Address which will going to be Defaulted
+
+Discussion : After discussing with others, if other address is being defaulted , send that address only ; get the
+aleady marked default address change it to non-default address. set the new address as default
+
+
+-----------------------

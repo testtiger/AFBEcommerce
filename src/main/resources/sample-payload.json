@@ -1,0 +1,114 @@
+//------ProductType creation
+//URI: http://localhost:8080/productTypes/
+{
+  "sample-payloads":[
+    {
+      "for":"Product Type creation",
+      "URI":"http://localhost:8080/productTypes/",
+      "TYPE":"POST",
+      "payload":{
+        "name": "Shoe",
+        "id": "570032",
+        "description": "shoe product description",
+        "propertyNames":[
+          {
+            "name": "size",
+            "id": "1001"
+          },
+          {
+            "name": "color",
+            "id": "1002"
+          }
+        ]
+      }
+    },
+    {
+      "for":"Property values creation",
+      "URI":"http://localhost:8080/productTypes/570032/propertyNames/1001/propertyValue",
+      "payload":   {
+        "value": "uk9",
+        "id": "1005"
+      }
+    },
+    {
+      "for":"Product Creation",
+      "URI":"http://localhost:8080/productTypes/",
+      "TYPE":"POST",
+      "payload":{
+        "name": "Nike-SHOE",
+        "repositoryId": "570033",
+        "description": "Nike shoe for rebook description",
+        "productType":{
+          "id":570032
+        }
+      }
+
+    },
+    {
+      "for":"Profile Creation with Addresses",
+      "URI":"http://localhost:8080/profiles/",
+      "TYPE":"POST",
+      "payload":{
+        "firstName": "Diwakara",
+        "lastName": "k",
+        "profileId": "570034",
+        "email": "Diwakara@gmail.com",
+        "phone": "8142785662",
+        "password": "Test@123",
+        "addressList": [
+          {
+            "firstName": "Balaram",
+            "lastName": "p",
+            "addressLine1": "Firsdt road",
+            "addressLine2": "TTD",
+            "city": "Anantapur",
+            "state": "AP",
+            "zip": "515001",
+            "country": "INDIA",
+            "addressType": "Home",
+            "isDefaultAddress": true,
+            "addressId": "6003"
+          },
+          {
+            "firstName": "BalaramOFC",
+            "lastName": "p",
+            "addressLine1": "Firsdt road",
+            "addressLine2": "TTD",
+            "city": "Anantapur",
+            "state": "AP",
+            "zip": "515001",
+            "country": "INDIA",
+            "addressType": "Home",
+            "isDefaultAddress": true,
+            "addressId": "6004"
+          }
+        ]
+      }
+
+    },
+    {
+      "for":"Addresses creation",
+      "URI":"http://localhost:8080/addresses/",
+      "TYPE":"POST",
+      "payload":{
+        "firstName": "Balaram",
+        "lastName": "p",
+        "addressLine1": "Firsdt road",
+        "addressLine2": "TTD",
+        "city": "Anantapur",
+        "state": "AP",
+        "zip": "515001",
+        "country": "INDIA",
+        "addressType": "Home",
+        "isDefaultAddress": true,
+        "addressId": "6000",
+        "profileId": "570031"
+      }
+
+
+    }
+
+  ]
+
+}
+

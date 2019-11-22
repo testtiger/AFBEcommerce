@@ -24,7 +24,6 @@ public class ShopperProfile implements GenericProfile {
     private String lastName;
     private String email;
     private String phone;
-    @JsonIgnore
     private String password;
     @Id
     @GeneratedValue(strategy = SEQUENCE)

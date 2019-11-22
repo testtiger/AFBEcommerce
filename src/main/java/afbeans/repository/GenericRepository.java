@@ -9,7 +9,7 @@ import java.util.List;
  @author dkammara on Thursday - 10/24/2019
 
  */
-public interface GenericDao<T extends Serializable> {
+public interface GenericRepository<T extends Serializable> {
 
     T findOne(final long id);
     List<T> findAll();

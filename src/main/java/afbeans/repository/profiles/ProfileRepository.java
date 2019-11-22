@@ -1,25 +1,20 @@
-package afbeans.repository;
+package afbeans.repository.profiles;
 
 import afbeans.model.address.Address;
-import afbeans.model.profiles.GenericProfile;
 import afbeans.model.profiles.ShopperProfile;
+import afbeans.repository.addresses.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.PrePersist;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static afbeans.PrintUtil.println;
 
 /***
 
@@ -92,7 +87,8 @@ import static afbeans.PrintUtil.println;
 
         String sql1="insert into shopper_profile (profile_id,email,first_name,last_name,password,phone) values(?,?,?,?,?,?)";
 
-       /* template.update(connection -> {
+       /*
+        template.update(connection -> {
             PreparedStatement stmt = connection.prepareStatement(sql, new String[]{"id"});
             stmt.setLong(1, profileDetails.getProfileId());
             stmt.setString(2, profileDetails.getEmail());
@@ -103,7 +99,8 @@ import static afbeans.PrintUtil.println;
             return stmt;
         }, keyHolder);
 
-        long createdProfileId=keyHolder.getKey().longValue();*/
+        long createdProfileId=keyHolder.getKey().longValue();
+        */
         int x=template.update(sql,profileDetails.getProfileId(),profileDetails.getEmail(),profileDetails.getFirstName(),profileDetails.getLastName(),profileDetails.getPassword(),profileDetails.getPhone());
         putAddressesToAddressTable(profileDetails.getAddressList(),profileDetails);
         return x;

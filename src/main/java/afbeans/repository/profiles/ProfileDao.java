@@ -1,4 +1,4 @@
-package afbeans.repository;
+package afbeans.repository.profiles;
 
 import afbeans.model.profiles.GenericProfile;
 import afbeans.model.profiles.ShopperProfile;

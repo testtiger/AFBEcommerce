@@ -1,5 +1,6 @@
 package afbeans.controllers;
 
+import afbeans.model.address.Address;
 import afbeans.model.profiles.GenericProfile;
 import afbeans.model.profiles.ShopperProfile;
 import afbeans.services.ProfileServices;
@@ -23,10 +24,17 @@ import static afbeans.PrintUtil.println;
 
  */
 
+
+
 /***
  * TODO : ADD OFFSET AND LIMIT CONTROL FOR ENDPOINT CLASS
  * TODO : ADD VALIDATION LOGIC FOR REQUEST PAYLOAD
  * TODO : BATCH UPDATES SUPPORT FOR MULTIPLE ADDRESSES
+ * TODO : handling exceptions at DB LEVEL
+ * TODO : DTO Object Mapping for Transforming Response to ognore fields
+ *
+ * TODO : PASSWORD IS MAPEED TO NULL
+ *
  */
 @RestController
 @RequestMapping(value = "profiles")
@@ -34,6 +42,7 @@ public class ProfileController {
 
     @Autowired
     ProfileServices profileServices;
+
 
     public ProfileController(){
         println("profile controller instantiated");
@@ -56,6 +65,19 @@ public class ProfileController {
     public ResponseEntity<GenericProfile> getProfile(@PathVariable long id){
         GenericProfile profile=profileServices.getProfile(id);
         return new ResponseEntity<GenericProfile>(profile,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}/addresses")
+    public ResponseEntity<List<Address>> getAllAddress(@PathVariable long id){
+        List<Address> addressList=profileServices.getAddressRepository().findAllAddressOfProfile(id);
+        return new ResponseEntity(addressList,HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}/addresses")
+    public ResponseEntity<List<Address>> updateAddresses(@PathVariable long id,List<Address> addresses){
+
+        List<Address> addressList=profileServices.getAddressRepository().findAllAddressOfProfile(id);
+        return new ResponseEntity(addressList,HttpStatus.OK);
     }
 
 }

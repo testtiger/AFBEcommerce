@@ -1,0 +1,16 @@
+Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+Hibernate: create table address (address_id bigint not null, address_line1 varchar(255), address_line2 varchar(255), address_type varchar(255), city varchar(255), country varchar(25
+5), first_name varchar(255), is_default_address boolean not null, last_name varchar(255), state varchar(255), zip varchar(255), profile_id bigint, primary key (address_id))
+Hibernate: create table product (repository_id bigint not null, description varchar(255), name varchar(255), product_type_product_type_id bigint, primary key (repository_id))
+Hibernate: create table product_type (product_type_id bigint not null, description varchar(255), name varchar(255), primary key (product_type_id))
+Hibernate: create table property_name (property_name_id bigint not null, name varchar(255), product_type_id bigint, primary key (property_name_id))
+Hibernate: create table property_value (id bigint not null, value varchar(255), property_name_id bigint, primary key (id))
+Hibernate: create table shopper_profile (profile_id bigint not null, email varchar(255), first_name varchar(255), last_name varchar(255), password varchar(255), phone varchar(255),
+primary key (profile_id))
+Hibernate: create table sku (id varchar(255) not null, available_quantity bigint not null, description varchar(255), name varchar(255), price decimal(19,2), repository_id bigint, pr
+imary key (id))
+Hibernate: alter table address add constraint FKejvbmostpks0ksgbnecvw20j7 foreign key (profile_id) references shopper_profile
+Hibernate: alter table product add constraint FK3u6qkx38jdj7yad6gacm0jwyu foreign key (product_type_product_type_id) references product_type
+Hibernate: alter table property_name add constraint FKcenjb4igg0h5c1qwexk0s6j01 foreign key (product_type_id) references product_type
+Hibernate: alter table property_value add constraint FKmq2b9e2s5u0pirv3smu68i497 foreign key (property_name_id) references property_name
+Hibernate: alter table sku add constraint FKqmbfxf9k4c9pdoah2c4bhjm8v foreign key (repository_id) references product

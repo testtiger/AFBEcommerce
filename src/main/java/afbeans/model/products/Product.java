@@ -2,18 +2,30 @@ package afbeans.model.products;
 
 import afbeans.model.categories.Category;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
 /***
 
  Created by 
  @author dkammara on Monday - 7/22/2019
 
  */
-public class Product {
+@Entity
+public class Product implements Serializable {
+
     private String name;
-    private String id;
+
+    @Id
+    private long repositoryId;
     private String description;
+
+    @Transient
+    private List<Sku> skuList;
+
+    @OneToOne(targetEntity = ProductType.class)
     private ProductType productType;
-    private Category categoryRef;
 
     public String getName() {
         return name;
@@ -23,12 +35,21 @@ public class Product {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public long getRepositoryId() {
+        return repositoryId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setRepositoryId(long id) {
+        this.repositoryId = id;
+    }
+
+    public List<Sku> getSkuList() {
+        return skuList;
+    }
+
+
+    public void setSkuList(List<Sku> skuList) {
+        this.skuList = skuList;
     }
 
     public String getDescription() {
@@ -39,18 +60,41 @@ public class Product {
         this.description = description;
     }
 
-    public Category getCategoryRef() {
-        return categoryRef;
-    }
 
-    public void setCategoryRef(Category categoryRef) {
-        this.categoryRef = categoryRef;
-    }
     public ProductType getProductType() {
         return productType;
     }
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    /*public Category getCategoryRef() {
+        return categoryRef;
+    }
+
+    public void setCategoryRef(Category categoryRef) {
+        this.categoryRef = categoryRef;
+    }*/
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", productTypeId=" + repositoryId +
+                ", description='" + description + '\'' +
+                ", skuList=" + skuList +
+                ", productType=" + productType +
+                '}';
+    }
+
+    public static void unitTest(){
+
+    }
+    public static void getData(){
+
+    }
+    public static void main(String[] args) {
+
     }
 }

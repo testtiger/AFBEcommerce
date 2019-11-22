@@ -1,0 +1,35 @@
+
+Rest Controllers:
+------------
+
+All GET endpoint should support limit & offset
+
+While listing dependencies make sure you keep AutoWired on setter
+
+For Updating & posting multiple json objects implement Batch updates
+
+Payload Validation should be done
+
+Throwing exceptions for incorrect payloads with Proper http resp codes
+
+Handling exceptions
+
+
+
+POJO model classes:
+-----------------
+
+Hibernate-Validations: Define hibernate validations
+Serial-Version Id: When Serializable interface is added make sure to add serial-version id
+Use Private key word for instance variables
+
+
+DAO layer:
+-----------
+Properly handle all exceptions make table & columns info is not being printed
+to console
+
+
+
+
+

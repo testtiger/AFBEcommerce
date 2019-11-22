@@ -1,24 +1,22 @@
-package afbeans.repository;
+package afbeans.repository.addresses;
 
 import afbeans.model.address.Address;
 import afbeans.model.profiles.ShopperProfile;
+import afbeans.repository.GenericRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 /***
-
  Created by 
  @author dkammara on Thursday - 10/24/2019
-
  */
 @Repository
-public class AddressRepository implements  GenericDao<Address> {
+public class AddressRepository implements GenericRepository<Address> {
 
     @Autowired
     JdbcTemplate template;
@@ -39,6 +37,7 @@ public class AddressRepository implements  GenericDao<Address> {
             ") values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
+    final static String SQL_FOR_Find_Addresses_Of_A_Profile="SELECT * FROM ADDRESS WHERE PROFILE_ID = ?";
     @Override
     public Address findOne(long id) {
         return null;
@@ -52,10 +51,11 @@ public class AddressRepository implements  GenericDao<Address> {
     }
 
 
-    public List<Address> findAllForProfile(long profileId) {
-        String sql="SELECT addr.adresline_1,prf.lastname FROM address addr join profile prf on prf.profile_id = addr.profile_id WHERE prf.profile_id = ?";
-        List<Address> addressList = this.template.query(sql,new AddressRepository.AddressRowMapper());
-        return addressList;
+    public List<Address> findAllAddressOfProfile(long profileId) {
+        //String sql="SELECT addr.adresline_1,prf.lastname FROM address addr join profile prf on prf.profile_id = addr.profile_id WHERE prf.profile_id = ?";
+        List<Address> addresses = this.template.query(
+                SQL_FOR_Find_Addresses_Of_A_Profile, new Object[] { profileId }, new AddressRepository.AddressRowMapper());
+        return addresses;
     }
 
     @Override
